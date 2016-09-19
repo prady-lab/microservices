@@ -30,11 +30,11 @@ This is a POC application, which demonstrates Microservice Architecture Pattern 
 - docker-compose scale userservice=2
  
 #### Important URLS
-- http://localhost:4000/users - Gatway. For Now, just one API call.
-- http://localhost:8761 - Eureka
-- http://localhost:8080/hystrix/monitor?stream=http%3A%2F%2Flocalhost%3A8989%2Fturbine.stream - Hystrix & Turbine Dashboard
-- http://localhost:15672 - RabbitMq management
-- http://localhost:5601 - Kibana Dashboard
+- [http://localhost:4000/users](http://localhost:4000/users) - Gatway. For Now, just one API call.
+- [http://localhost:8761](http://localhost:8761) - Eureka
+- [http://localhost:8080/hystrix/monitor?stream=http%3A%2F%2Flocalhost%3A8989%2Fturbine.stream](http://localhost:8080/hystrix/monitor?stream=http%3A%2F%2Flocalhost%3A8989%2Fturbine.stream) - Hystrix & Turbine Dashboard
+- [http://localhost:15672](http://localhost:15672) - RabbitMq management
+- [http://localhost:5601](http://localhost:5601) - Kibana Dashboard
 
 #### TODO
 - Auth using OAuth 
