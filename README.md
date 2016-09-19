@@ -36,3 +36,6 @@ This is a POC application, which demonstrates Microservice Architecture Pattern 
 - http://localhost:15672 - RabbitMq management
 - http://localhost:5601 - Kibana Dashboard
 
+#### TODO
+- Auth using OAuth 
+- NoSQL DB for each services
