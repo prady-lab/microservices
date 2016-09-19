@@ -1,0 +1,4 @@
+com\prady\sample\clould\user\service\UserServiceImpl.class
+com\prady\sample\clould\user\service\UserService.class
+com\prady\sample\clould\user\UserApplication.class
+com\prady\sample\clould\user\controller\UserController.class

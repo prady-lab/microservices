@@ -1,0 +1,5 @@
+com\prady\sample\clould\gateway\client\UserServiceClient.class
+com\prady\sample\clould\gateway\service\GatewayServiceImpl.class
+com\prady\sample\clould\gateway\GatewayApplication.class
+com\prady\sample\clould\gateway\service\GatewayService.class
+com\prady\sample\clould\gateway\controller\GatewayController.class

@@ -1,0 +1,113 @@
+version: '2'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+        
+  elasticsearch:
+    image: elasticsearch
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+    ports:
+      - 9200:9200
+    volumes:
+      - ./logger/elasticsearch/data:/usr/share/elasticsearch/data
+  
+  logstash:
+    build: logger/logstash
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+    command: logstash -f /config/logstash-json-docker.conf
+    ports:
+      - 5044:5044
+    links:
+      - elasticsearch
+    volumes_from:
+      - registry
+      - gateway
+      - monitoring
+  
+  kibana:
+    image: kibana
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+    ports:
+      - 5601:5601
+    links:
+      - elasticsearch
+              
+  registry:
+    build: registry
+    restart: always
+    ports:
+      - "8761:8761"
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+    volumes:
+      - ./logs/docker:/logs
+                  
+  gateway:
+    build: gateway
+    depends_on:
+      - rabbitmq
+      - registry          
+    restart: always
+    ports:
+      - "4000:4000"
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+    volumes:
+      - ./logs/docker:/logs        
+        
+  userservice:
+    build: user-service
+    depends_on:
+      - rabbitmq
+      - registry     
+      - logstash     
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+    volumes:
+      - ./logs/docker:/logs  
+    links:
+      - logstash          
+              
+  monitoring:
+    build: monitoring
+    depends_on:
+      - rabbitmq
+    restart: always
+    ports:
+      - "8080:8080"
+      - "8989:8989"
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+    volumes:
+      - ./logs/docker:/logs        
+      
