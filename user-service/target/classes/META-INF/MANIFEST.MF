@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: user-service
-Implementation-Version: 1.0-SNAPSHOT
-Built-By: pradeep.b
-Implementation-Vendor-Id: com.prady.sample
-Build-Jdk: 1.8.0_101
-Created-By: Maven Integration for Eclipse
-Implementation-Vendor: Pivotal Software, Inc.
-
