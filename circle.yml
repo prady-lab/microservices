@@ -3,7 +3,7 @@ machine:
     version: oraclejdk8
 dependencies:
   pre: 
-    - export TERM="dumb"; if [ ! -e .m2 ]; then mvnw clean ; else echo "Maven installed" ;fi
+    - export TERM="dumb"; if [ ! -e .m2 ]; then ./mvnw clean ; else echo "Maven installed" ;fi
   override:
     - ./mvnw clean package -DskipTests
   cache_directories:
