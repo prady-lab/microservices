@@ -1,6 +1,9 @@
 
 package com.prady.sample.cloud.common.dto.user;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
 
@@ -17,7 +20,7 @@ public class RoleDTO {
 
     private String roleDescription;
 
-    // private List<String> permissions = new ArrayList<>();
+    private List<String> permissions = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -43,8 +46,12 @@ public class RoleDTO {
         this.roleDescription = roleDescription;
     }
 
-    /*
-     * public List<String> getPermissions() { return permissions; } public void setPermissions(List<String> permissions) { this.permissions
-     * = permissions; }
-     */
+    public List<String> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<String> permissions) {
+        this.permissions = permissions;
+    }
+
 }

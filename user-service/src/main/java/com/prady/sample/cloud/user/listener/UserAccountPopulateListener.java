@@ -30,6 +30,15 @@ public class UserAccountPopulateListener implements ApplicationListener<ContextR
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+
+        roleService.createPermissionIfNotPresent("PR1", "Permission 1");
+        roleService.createPermissionIfNotPresent("PR2", "Permission 1");
+        roleService.createPermissionIfNotPresent("PR3", "Permission 1");
+        roleService.createPermissionIfNotPresent("PR4", "Permission 1");
+        roleService.createPermissionIfNotPresent("PR5", "Permission 1");
+
+        roleService.refreshPermissionCache();
+
         UserAccountDTO userAccountDTO = new UserAccountDTO();
         userAccountDTO.setUserLoginName("prady");
         userAccountDTO.setFirstName("Prady");
@@ -39,13 +48,14 @@ public class UserAccountPopulateListener implements ApplicationListener<ContextR
         RoleDTO roleDTO = new RoleDTO();
         roleDTO.setRoleName("ADMIN");
         roleDTO.setRoleDescription("Admin Role");
+        roleDTO.setPermissions(Arrays.asList(new String[] { "PR1", "PR2", "PR3" }));
 
-        this.roleService.createIfNotPresent(roleDTO);
-        RoleDTO savedRoleDTO = this.roleService.getRolebyRoleName(roleDTO.getRoleName());
+        roleService.createIfNotPresent(roleDTO);
+        RoleDTO savedRoleDTO = roleService.getRolebyRoleName(roleDTO.getRoleName());
 
         userAccountDTO.setRoles(Arrays.asList(new RoleDTO[] { savedRoleDTO }));
 
-        this.userService.createIfNotPresent(userAccountDTO);
+        userService.createIfNotPresent(userAccountDTO);
     }
 
 }

@@ -26,6 +26,28 @@ public class Permission {
         setId(id);
     }
 
+    /**
+     * @param permissionName
+     * @param permissionDescription
+     */
+    public Permission(String permissionName, String permissionDescription) {
+        super();
+        this.permissionName = permissionName;
+        this.permissionDescription = permissionDescription;
+    }
+
+    /**
+     * @param id
+     * @param permissionName
+     * @param permissionDescription
+     */
+    public Permission(String id, String permissionName, String permissionDescription) {
+        super();
+        this.id = id;
+        this.permissionName = permissionName;
+        this.permissionDescription = permissionDescription;
+    }
+
     public String getId() {
         return id;
     }

@@ -44,4 +44,15 @@ public interface RoleService {
      * @return
      */
     RoleDTO update(String id, RoleDTO roleDTO);
+
+    /**
+     * @param permissionName
+     * @param permissionDescription
+     */
+    void createPermissionIfNotPresent(String permissionName, String permissionDescription);
+
+    /**
+     *
+     */
+    void refreshPermissionCache();
 }

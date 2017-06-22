@@ -1,7 +1,9 @@
 
 package com.prady.sample.cloud.user.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,12 +12,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
+import com.prady.sample.cloud.common.cache.ApplicationCache;
+import com.prady.sample.cloud.common.dto.user.PermissionDTO;
 import com.prady.sample.cloud.common.dto.user.RoleDTO;
 import com.prady.sample.cloud.common.exception.ItemNotFoundException;
 import com.prady.sample.cloud.common.exception.ValidationException;
 import com.prady.sample.cloud.common.validation.ValidationUtil;
+import com.prady.sample.cloud.user.domain.Permission;
 import com.prady.sample.cloud.user.domain.Role;
-import com.prady.sample.cloud.user.mapper.UserAccountMapper;
+import com.prady.sample.cloud.user.mapper.RoleMapper;
+import com.prady.sample.cloud.user.repository.PermissionRepository;
 import com.prady.sample.cloud.user.repository.RoleRepository;
 
 import net.sf.oval.ConstraintViolation;
@@ -32,7 +38,10 @@ public class RoleServiceImpl implements RoleService {
     private RoleRepository roleRepository;
 
     @Autowired
-    private UserAccountMapper userAccountMapper;
+    private PermissionRepository permissionRepository;
+
+    @Autowired
+    private RoleMapper roleMapper;
 
     @Override
     public List<RoleDTO> getRoles() {
@@ -40,7 +49,7 @@ public class RoleServiceImpl implements RoleService {
 
         List<Role> roles = roleRepository.findAll();
 
-        List<RoleDTO> roleDTOs = userAccountMapper.toRoleDTOs(roles);
+        List<RoleDTO> roleDTOs = roleMapper.toRoleDTOs(roles);
 
         return roleDTOs;
     }
@@ -48,7 +57,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public RoleDTO getRolebyRoleName(String roleName) {
         Role role = roleRepository.findByRoleName(roleName);
-        return userAccountMapper.toRoleDTO(role);
+        return roleMapper.toRoleDTO(role);
 
     }
 
@@ -64,7 +73,7 @@ public class RoleServiceImpl implements RoleService {
         Role existing = roleRepository.findByRoleName(roleDTO.getRoleName());
         Assert.isNull(existing, "Role already exists " + roleDTO.getRoleName());
 
-        existing = userAccountMapper.toRole(roleDTO);
+        existing = roleMapper.toRole(roleDTO);
 
         roleRepository.save(existing);
 
@@ -84,7 +93,7 @@ public class RoleServiceImpl implements RoleService {
         if (null != existing) {
             log.info("Role '{}' already exists", existing.getRoleName());
         } else {
-            existing = userAccountMapper.toRole(roleDTO);
+            existing = roleMapper.toRole(roleDTO);
 
             roleRepository.save(existing);
 
@@ -103,7 +112,7 @@ public class RoleServiceImpl implements RoleService {
         if (null == role) {
             throw new ItemNotFoundException(id, "Role");
         }
-        return userAccountMapper.toRoleDTO(role);
+        return roleMapper.toRoleDTO(role);
 
     }
 
@@ -146,7 +155,7 @@ public class RoleServiceImpl implements RoleService {
         if (null == existing) {
             throw new ItemNotFoundException(id, "Role");
         } else {
-            existing = userAccountMapper.toRole(roleDTO);
+            existing = roleMapper.toRole(roleDTO);
 
             roleRepository.save(existing);
 
@@ -154,6 +163,41 @@ public class RoleServiceImpl implements RoleService {
         }
 
         return roleDTO;
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.prady.sample.cloud.user.service.RoleService#createPermission(java.lang.String, java.lang.String)
+     */
+    @Override
+    public void createPermissionIfNotPresent(String permissionName, String permissionDescription) {
+        Permission existing = permissionRepository.findByPermissionName(permissionName);
+        if (null != existing) {
+            log.info("Permission '{}' already exists", permissionName);
+        } else {
+            permissionRepository.save(new Permission(permissionName, permissionDescription));
+            log.info("Permission '{}' created Successfully ", permissionName);
+        }
+
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.prady.sample.cloud.user.service.RoleService#refreshPermissionCache()
+     */
+    @Override
+    public void refreshPermissionCache() {
+        List<Permission> allPermission = permissionRepository.findAll();
+        if (!CollectionUtils.isEmpty(allPermission)) {
+            Map<String, PermissionDTO> permissionMap = new HashMap<>();
+            for (Permission permission : allPermission) {
+                permissionMap.put(permission.getId(),
+                        new PermissionDTO(permission.getId(), permission.getPermissionName(), permission.getPermissionDescription()));
+            }
+
+            ApplicationCache.getInstance().updatePermission(permissionMap);
+        }
+
     }
 
 }
