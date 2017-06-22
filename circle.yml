@@ -3,8 +3,8 @@ machine:
     version: oraclejdk8
 dependencies:
   pre: 
-    - export TERM="dumb"; if [ ! -e .m2 ]; then mvn dependency:resolve ; else echo "Maven installed" ;fi
+    - export TERM="dumb"; if [ ! -e .m2 ]; then mvn clean ; else echo "Maven installed" ;fi
   override:
-    - mvn clean install -DskipTests
+    - mvn clean package -DskipTests
   cache_directories:
     - ".m2"
