@@ -1,0 +1,10 @@
+machine:
+  java:
+    version: oraclejdk8
+dependencies:
+  pre: 
+    - export TERM="dumb"; if [ ! -e .m2 ]; then mvn wrapper ; else echo "Maven installed" ;fi
+  override:
+    - ./mvnw clean package -DskipTests
+  cache_directories:
+    - ".m2"
