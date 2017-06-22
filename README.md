@@ -1,6 +1,6 @@
 # Prady's sample application:- Spring Cloud Docker and various frameworks
 
-[![Circle CI](https://circleci.com/gh/pradyb/microservices/tree/develop.svg)](https://circleci.com/gh/pradyb/microservices/)
+[![CircleCI](https://circleci.com/gh/pradyb/microservices.svg?style=svg)](https://circleci.com/gh/pradyb/microservices)
 
 This is a POC application, which demonstrates Microservice Architecture Pattern using Spring Cloud, Netflix OSS, Consul, ELK, Docker and monitoring  solution
 
