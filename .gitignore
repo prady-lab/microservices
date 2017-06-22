@@ -1,9 +1,0 @@
-bin/
-target/
-build/
-.gradle
-out/
-/javafx/hello/HelloWorldApplication/nbproject/private/
-/javafx/hello/HelloWorldApplication/dist/
-*.log
-*.log.json
