@@ -7,7 +7,7 @@ dependencies:
   override:
     - mvn clean package -DskipTests
   cache_directories:
-    - ".m2"
+#    - ".m2"
 test:
   override:
     - echo "Skipping Test"
