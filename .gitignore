@@ -1,0 +1,15 @@
+bin/
+target/
+build/
+.gradle
+out/
+logs/
+/javafx/hello/HelloWorldApplication/nbproject/private/
+/javafx/hello/HelloWorldApplication/dist/
+*.log
+*.log.json
+node_modules
+/spring/cloud/logger/elasticsearch/data/nodes
+/spring/cloud/logger/elasticsearch/data/elasticsearch
+/spring/cloud/devops-monitoring/grafana/data/sessions/
+.idea/
