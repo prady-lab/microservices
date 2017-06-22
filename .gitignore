@@ -9,7 +9,7 @@ logs/
 *.log
 *.log.json
 node_modules
-/spring/cloud/logger/elasticsearch/data/nodes
-/spring/cloud/logger/elasticsearch/data/elasticsearch
-/spring/cloud/devops-monitoring/grafana/data/sessions/
+/logger/elasticsearch/data/nodes
+/logger/elasticsearch/data/elasticsearch
+/devops-monitoring/grafana/data/sessions/
 .idea/
