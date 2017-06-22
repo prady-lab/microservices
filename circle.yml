@@ -5,6 +5,6 @@ dependencies:
   pre: 
     - export TERM="dumb"; if [ ! -e .m2 ]; then mvn dependency:resolve ; else echo "Maven installed" ;fi
   override:
-    - mvn clean package -DskipTests
+    - mvn clean install -DskipTests
   cache_directories:
     - ".m2"
