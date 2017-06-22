@@ -60,7 +60,7 @@ This test invokes various APIs via Gateway service and the results can be monito
 * Grafana: Login with user name **admin** and password **changeme**.
 * Kibana: Predefined URL
 ```
-http://10.131.155.127:5601/app/kibana#/discover?_g=(refreshInterval:('$$hashKey':'object:999',display:'5%20seconds',pause:!f,section:1,value:5000),time:(from:now%2Fd,mode:quick,to:now%2Fd))&_a=(columns:!(host,level,appname,logger_name,message,X-B3-ParentSpanId,X-B3-TraceId,thread_name),index:'logstash-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'*')),sort:!('@timestamp',desc),uiState:(spy:(mode:(fill:!f,name:!n)),vis:(legendOpen:!f)))
+http://localhost:5601/app/kibana#/discover?_g=(refreshInterval:('$$hashKey':'object:999',display:'5%20seconds',pause:!f,section:1,value:5000),time:(from:now%2Fd,mode:quick,to:now%2Fd))&_a=(columns:!(host,level,appname,logger_name,message,X-B3-ParentSpanId,X-B3-TraceId,thread_name),index:'logstash-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'*')),sort:!('@timestamp',desc),uiState:(spy:(mode:(fill:!f,name:!n)),vis:(legendOpen:!f)))
 ```
 
 ***Grafana Dashboard*** 
