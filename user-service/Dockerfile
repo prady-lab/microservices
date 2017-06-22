@@ -4,4 +4,4 @@ MAINTAINER Prady <pradylibrary@gmail.com>
 ADD ./target/user-service.jar app.jar
 ENTRYPOINT ["java","-Dspring.profiles.active=docker","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 
-EXPOSE 4000
+EXPOSE 4010

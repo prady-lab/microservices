@@ -1,0 +1,33 @@
+# For deployment in Docker containers
+spring:
+  profiles: docker
+
+  rabbitmq:
+    host: rabbitmq
+    
+  data:
+    mongodb:
+      host: mongodb
+      username: user
+      password: password
+      database: cloud
+      port: 27017      
+    
+  zipkin:
+    baseUrl: http://zipkin:9411/
+    
+  cloud:
+    consul:
+      host: consul
+      port: 8500     
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+        circuitBreaker:
+          enabled: true
+      

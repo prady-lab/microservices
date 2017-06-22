@@ -1,17 +1,80 @@
 version: '2'
 
+networks:
+  cloud-net:
+    driver: bridge
+
 services:
-  rabbitmq:
-    image: rabbitmq:3-management
-    restart: always
+
+  mongodb:
+    build: mongodb
+    image: cloud/mongodb
     ports:
-      - "5672:5672"
-      - "15672:15672"
+      - 27017:27017
+    restart: always
     logging:
       options:
         max-size: "10m"
         max-file: "10"
-        
+    networks:
+      - cloud-net
+    labels:
+      org.label-schema.group: "support"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+    networks:
+      - cloud-net
+    labels:
+      org.label-schema.group: "support"
+
+  zipkin:
+    image: openzipkin/zipkin
+    restart: always
+    ports:
+      - 9411:9411
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+    networks:
+      - cloud-net
+    labels:
+      org.label-schema.group: "support"
+
+  consul:
+    image: consul
+    ports:
+      - 8300:8300
+      - 8500:8500
+      - 8600:8600
+    command: consul agent -dev -ui -client 0.0.0.0
+    networks:
+      - cloud-net
+    labels:
+      org.label-schema.group: "support"
+
+  consul-config-loader:
+    build: config-loader
+    image: cloud/config-loader
+    volumes:
+      - ./config-loader/config/:/config
+    environment:
+      - CONSUL_URL=consul
+      - CONSUL_PORT=8500
+    networks:
+      - cloud-net
+    labels:
+      org.label-schema.group: "support"
+
   elasticsearch:
     image: elasticsearch
     restart: always
@@ -23,9 +86,14 @@ services:
       - 9200:9200
     volumes:
       - ./logger/elasticsearch/data:/usr/share/elasticsearch/data
-  
+    networks:
+      - cloud-net
+    labels:
+      org.label-schema.group: "support"
+
   logstash:
     build: logger/logstash
+    image: cloud/logstash
     restart: always
     logging:
       options:
@@ -37,10 +105,13 @@ services:
     links:
       - elasticsearch
     volumes_from:
-      - registry
       - gateway
       - monitoring
-  
+    networks:
+      - cloud-net
+    labels:
+      org.label-schema.group: "support"
+
   kibana:
     image: kibana
     restart: always
@@ -52,62 +123,116 @@ services:
       - 5601:5601
     links:
       - elasticsearch
-              
-  registry:
-    build: registry
+    networks:
+      - cloud-net
+    labels:
+      org.label-schema.group: "support"
+
+  monitoring:
+    build: monitoring
+    image: cloud/monitoring
+    depends_on:
+      - rabbitmq
+      - consul-config-loader
     restart: always
     ports:
-      - "8761:8761"
+      - 8080:8080
+      - 8989:8989
     logging:
       options:
         max-size: "10m"
         max-file: "10"
     volumes:
       - ./logs/docker:/logs
-                  
+    networks:
+      - cloud-net
+    labels:
+      org.label-schema.group: "monitoring"
+
   gateway:
     build: gateway
+    image: cloud/gateway
     depends_on:
-      - rabbitmq
-      - registry          
+      - zipkin
+      - consul-config-loader
     restart: always
     ports:
-      - "4000:4000"
+      - 4000:4000
     logging:
       options:
         max-size: "10m"
         max-file: "10"
     volumes:
-      - ./logs/docker:/logs        
-        
+      - ./logs/docker:/logs
+    networks:
+      - cloud-net
+    labels:
+      org.label-schema.group: "core"
+
   userservice:
     build: user-service
+    image: cloud/userservice
     depends_on:
       - rabbitmq
-      - registry     
-      - logstash     
+      - logstash
+      - zipkin
+      - consul-config-loader
     restart: always
     logging:
       options:
         max-size: "10m"
         max-file: "10"
     volumes:
-      - ./logs/docker:/logs  
+      - ./logs/docker:/logs
     links:
-      - logstash          
-              
-  monitoring:
-    build: monitoring
+      - logstash
+    networks:
+      - cloud-net
+    labels:
+      org.label-schema.group: "core"
+
+  auditservice:
+    build: audit-service
+    image: cloud/auditservice
     depends_on:
       - rabbitmq
+      - logstash
+      - zipkin
+      - consul-config-loader
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+    volumes:
+      - ./logs/docker:/logs
+    links:
+      - logstash
+    networks:
+      - cloud-net
+    labels:
+      org.label-schema.group: "core"
+
+  authservice:
+    build: auth-service
+    image: cloud/authservice
+    depends_on:
+      - mongodb
+      - logstash
+      - zipkin
+      - consul-config-loader
     restart: always
     ports:
-      - "8080:8080"
-      - "8989:8989"
+      - 4005:4005
     logging:
       options:
         max-size: "10m"
         max-file: "10"
     volumes:
-      - ./logs/docker:/logs        
+      - ./logs/docker:/logs
+    networks:
+      - cloud-net
+    labels:
+      org.label-schema.group: "core"
+
       

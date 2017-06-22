@@ -1,0 +1,7 @@
+# For deployment in Docker containers
+spring:
+  profiles: docker
+
+logging:
+  file: /logs/gateway.log
+  

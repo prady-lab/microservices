@@ -1,0 +1,11 @@
+server:
+  port: 4020
+
+logging:
+  file: logs/audit-service.log
+
+spring:
+  cloud:
+    consul:
+      discovery:
+        instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}

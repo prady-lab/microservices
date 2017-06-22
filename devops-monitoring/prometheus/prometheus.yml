@@ -1,0 +1,55 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  external_labels:
+      monitor: 'docker-host-alpha'
+
+# Load and evaluate rules in this file every 'evaluation_interval' seconds.
+rule_files:
+  - "targets.rules"
+  - "host.rules"
+  - "containers.rules"
+
+# A scrape configuration containing exactly one endpoint to scrape.
+scrape_configs:
+  - job_name: 'nodeexporter'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['nodeexporter:9100']
+
+  - job_name: 'cadvisor'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['cadvisor:8080']
+
+  - job_name: 'prometheus'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'consul'
+    consul_sd_configs:
+      - server: 'consul:8500'
+        services: ['gateway', 'userservice','authservice','auditservice']
+    relabel_configs:
+      - source_labels: ['__meta_consul_service']
+        regex:         '(.*)'
+        target_label:  'job'
+        replacement:   '$1'
+      - source_labels: ['__meta_consul_node']
+        regex:         '(.*)'
+        target_label:  'instance'
+        replacement:   '$1'
+      - source_labels: ['__meta_consul_tags']
+        regex:         ',(production|canary),'
+        target_label:  'group'
+        replacement:   '$1'
+      - target_label: __metrics_path__
+        replacement: /prometheus
+      - source_labels: ['__meta_consul_service']
+        regex:         'authservice'
+        target_label:  '__metrics_path__'
+        replacement:   /uaa/prometheus

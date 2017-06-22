@@ -1,0 +1,33 @@
+server:
+  port: 4000
+  
+logging:
+  file: logs/gateway.log 
+
+zuul:
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+  #SendErrorFilter:
+  #  error:
+  #      disable: true    
+
+  routes:
+    userservice_u:
+        path: /users/**
+        serviceId: userservice
+        strip-prefix: false
+    userservice_r:
+        path: /roles/**
+        serviceId: userservice
+        strip-prefix: false
+        
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
+#    healthcheck:
+#      enabled: true      
+

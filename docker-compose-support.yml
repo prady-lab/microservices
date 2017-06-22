@@ -1,0 +1,97 @@
+version: '2'
+
+networks:
+  cloud-net:
+    driver: bridge
+
+services:
+
+  mongodb:
+    build: mongodb
+    image: cloud/mongodb
+    ports:
+      - 27017:27017
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+    networks:
+      - cloud-net
+    labels:
+      org.label-schema.group: "support"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+    networks:
+      - cloud-net
+    labels:
+      org.label-schema.group: "support"
+
+  zipkin:
+    image: openzipkin/zipkin
+    restart: always
+    ports:
+      - 9411:9411
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+    networks:
+      - cloud-net
+    labels:
+      org.label-schema.group: "support"
+
+  consul:
+    image: consul
+    ports:
+      - 8300:8300
+      - 8500:8500
+      - 8600:8600
+    command: consul agent -dev -ui -client 0.0.0.0
+    networks:
+      - cloud-net
+    labels:
+      org.label-schema.group: "support"
+
+  consul-config-loader:
+    build: config-loader
+    image: cloud/config-loader
+    volumes:
+      - ./config-loader/config/:/config
+    environment:
+      - CONSUL_URL=consul
+      - CONSUL_PORT=8500
+    networks:
+      - cloud-net
+    labels:
+      org.label-schema.group: "support"
+
+  monitoring:
+    build: monitoring
+    image: cloud/monitoring
+    depends_on:
+      - rabbitmq
+      - consul-config-loader
+    restart: always
+    ports:
+      - 8080:8080
+      - 8989:8989
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+    volumes:
+      - ./logs/docker:/logs
+    networks:
+      - cloud-net
+    labels:
+      org.label-schema.group: "monitoring"

@@ -1,0 +1,59 @@
+hystrix:
+  command:
+    default:
+      execution:
+        circuitBreaker:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+    stream:
+      queue:
+        enabled: false
+        gatherRate: 20000
+
+
+ribbon:
+  ReadTimeout: 20000
+  ConnectTimeout: 20000
+
+spring:
+  rabbitmq:
+    host: localhost
+    # username: cloud
+    # password: cloud
+
+  data:
+    mongodb:
+      host: localhost
+      username: user
+      password: password
+      database: cloud
+      port: 27017  
+      
+  zipkin:
+    baseUrl: http://localhost:9411/
+    
+  metrics:
+    servo:
+      enabled: false
+      
+  sleuth:
+    sampler:
+      percentage: 1.0
+      ignoreSleuthExport: gather-metrics,send-metrics,catalog-services-watch,watch-config-key-values,http:/prometheus
+      
+  cloud:
+    consul:
+      host: localhost
+      port: 8500  
+
+endpoints:
+  metrics:
+    enabled: true
+    id: springmetrics
+
+management:
+  security:
+    enabled: false
+

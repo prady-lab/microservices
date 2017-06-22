@@ -1,0 +1,12 @@
+server:
+  context-path: /uaa
+  port: 4005
+
+spring:
+  cloud:
+    consul:
+      discovery:
+        healthCheckPath: ${server.context-path}/health
+
+logging:
+  file: logs/auth-service.log

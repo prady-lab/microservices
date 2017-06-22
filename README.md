@@ -1,44 +1,83 @@
-# Prady's sample application:- Spring Cloud Netflix OSS ELK Docker
+# Prady's sample application:- Spring Cloud Docker and various frameworks
 
-This is a POC application, which demonstrates Microservice Architecture Pattern using Spring Cloud, Netflix OSS, ELK and Docker.
+This is a POC application, which demonstrates Microservice Architecture Pattern using Spring Cloud, Netflix OSS, Consul, ELK, Docker and monitoring  solution
 
-#### Before you start
-- Install Docker and Docker Compose.
+## Frameworks used 
+* [Spring Cloud](http://projects.spring.io/spring-cloud/)
+* [Consul](https://www.consul.io/)
+* Netflix OSS
+  * [Zuul](https://github.com/Netflix/zuul/wiki)
+  * [Hystrix](https://github.com/Netflix/Hystrix)
+  * [Turbine](https://github.com/Netflix/Turbine)
+  * [Ribbon](https://github.com/Netflix/ribbon)
+* [Feign](https://github.com/OpenFeign/feign)
+* [Sleuth](https://cloud.spring.io/spring-cloud-sleuth/)
+* [Zipkin](http://zipkin.io/)
+* ELK Stack 
+  * [Logstash](https://www.elastic.co/products/logstash) 
+  * [Elasticsearch](https://www.elastic.co/products/elasticsearch)
+  * [Kibana](https://www.elastic.co/products/kibana) 
+* Monitoring 
+  * [Prometheus](https://prometheus.io/)
+  * [Grafana](http://grafana.org/)
+  * [cAdvisor](https://github.com/google/cadvisor)
+  * [NodeExporter](https://github.com/prometheus/node_exporter)
 
-#### Run the Docker 
-- docker-compose up -d
 
-#### Important Commands	
+### Before you start
+- Install Mavan, Docker and Docker Compose.
 
-- mvn clean install
-- docker-compose up --build -d
+### Get, Build and Run
+* `git clone https://github.com/pradyb/microservices`
+* `cd microservices`
+* `mvn clean package -DskipTests`
+* `docker-compose up --build -d`
+* `cd devops-monitoring`
+* `docker-compose up --build -d`
 
-- docker-compose stop
-- docker-compose rm -f
+#### Test
+* `mvn test` 
+This test invokes various APIs via Gateway service and the results can be monitor using below URLs  
 
-- docker-compose logs userservice
-- docker-compose logs gateway
-- docker-compose logs registry 
-
-- docker-compose logs logstash 
-- docker-compose logs elasticsearch 
-
-- docker exec -it cloud_registry_1 bash
-- docker exec -it cloud_gateway_1 bash
-- docker exec -it cloud_logstash_1 bash
-
-- docker-compose scale userservice=2
+###### Scale a container
+* `docker-compose scale userservice=2`
  
-#### Important URLS
-- [http://localhost:4000/users](http://localhost:4000/users) - Gatway. For Now, just one API call.
-- [http://localhost:8761](http://localhost:8761) - Eureka
-- [http://localhost:8080/hystrix/monitor?stream=http%3A%2F%2Flocalhost%3A8989%2Fturbine.stream](http://localhost:8080/hystrix/monitor?stream=http%3A%2F%2Flocalhost%3A8989%2Fturbine.stream) - Hystrix & Turbine Dashboard
-- [http://localhost:15672](http://localhost:15672) - RabbitMq management
-- [http://localhost:5601](http://localhost:5601) - Kibana Dashboard. Use below URL for predefined layout
+### URLs
+
+| Containers | Use | URL |
+| ------ | ------ | ------ |
+| Consul | Service Discovery and Configuration | [http://localhost:8500/ui](http://localhost:8500/ui) |
+| Kibana | Log Visualize | [http://localhost:5601](http://localhost:5601)|
+| Zipkin | Distributed Tracing system | [http://localhost:9411](http://localhost:9411)|
+| Hystrix & Turbine | Aggregating streams of Server-Sent Event (SSE)  | [http://localhost:8080/hystrix/](http://localhost:8080/hystrix/monitor?stream=http%3A%2F%2Flocalhost%3A8989%2Fturbine.stream)|
+| Prometheus | Application Metrics Database | [http://localhost:9090/graph](http://localhost:9090/graph) |
+| Grafana | Metrics Visualize | [http://localhost:3000](http://localhost:3000) |
+| RabbitMQ | Message Broker | [http://localhost:15672](http://localhost:15672) |
+
+###### Other info
+* Grafana: Login with user name **admin** and password **changeme**.
+* Kibana: Predefined URL
 ```
-http://localhost:5601/app/kibana#/discover?_g=(refreshInterval:(display:'5%20seconds',pause:!f,section:1,value:5000),time:(from:now-15m,mode:quick,to:now))&_a=(columns:!(appname,host,level,caller_class_name,caller_method_name,message),index:'logstash-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'*')),sort:!('@timestamp',desc))
+http://10.131.155.127:5601/app/kibana#/discover?_g=(refreshInterval:('$$hashKey':'object:999',display:'5%20seconds',pause:!f,section:1,value:5000),time:(from:now%2Fd,mode:quick,to:now%2Fd))&_a=(columns:!(host,level,appname,logger_name,message,X-B3-ParentSpanId,X-B3-TraceId,thread_name),index:'logstash-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'*')),sort:!('@timestamp',desc),uiState:(spy:(mode:(fill:!f,name:!n)),vis:(legendOpen:!f)))
 ```
+
+***Grafana Dashboard*** 
+* Application Transactions
+![Application Transactions](https://github.com/pradyb/microservices/blob/master/images/ApplicationTx.png?raw=true)
+* Hystrix 
+![Hystrix](https://github.com/pradyb/microservices/blob/master/images/Hystrix%20Dashboard.png?raw=true)
+
+***Turbine Dashboard***
+![Turbine](https://github.com/pradyb/microservices/blob/master/images/Turbine%20Dashboard.png?raw=true)
+
+***Zipkin***
+![Zipkin](https://github.com/pradyb/microservices/blob/master/images/Zipkin%20Dependencies.png?raw=true)
+![Zipkin](https://github.com/pradyb/microservices/blob/master/images/Zipkin%20Trace.png?raw=true)
+
+
+Thanks to **Stefan Prodan** for providing a great setup for monitoring Docker containers
+[Stefan Prodan Blog](https://stefanprodan.com/2016/a-monitoring-solution-for-docker-hosts-containers-and-containerized-services/)
+
 
 #### TODO
-- Auth using OAuth 
-- NoSQL DB for each services
+- OAuth for Client services

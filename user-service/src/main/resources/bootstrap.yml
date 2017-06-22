@@ -1,3 +1,22 @@
 spring:
   application:
-    name: user-service
+    name: userservice
+
+  cloud:
+    consul:
+      host: localhost
+      port: 8500  
+      config:
+        enabled: true
+        profileSeparator: '-'    
+        format: YAML        
+        
+---        
+# For deployment in Docker containers
+spring:
+  profiles: docker
+
+  cloud:
+    consul:
+      host: consul
+      port: 8500             

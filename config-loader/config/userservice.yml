@@ -1,0 +1,12 @@
+server:
+  # context-path: /user-service
+  port: 4010
+
+logging:
+  file: logs/user-service.log
+
+spring:
+  cloud:
+    consul:
+      discovery:
+        instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}

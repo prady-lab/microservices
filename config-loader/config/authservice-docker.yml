@@ -1,0 +1,6 @@
+# For deployment in Docker containers
+spring:
+  profiles: docker
+
+logging:
+  file: /logs/auth-service.log

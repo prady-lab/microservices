@@ -11,10 +11,13 @@
 	<modules>
 		<module>monitoring</module>
 		<module>model</module>
+		<module>env</module>
+		<module>common</module>
 		<module>registry</module>
 		<module>gateway</module>
-		<!-- <module>auth-service</module>  -->
+		<module>auth-service</module>
 		<module>user-service</module>
+		<module>audit-service</module>
 	</modules>
 
 </project>
