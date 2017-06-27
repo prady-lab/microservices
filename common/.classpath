@@ -36,10 +36,7 @@
   <classpathentry kind="var" path="M2_REPO/com/fasterxml/classmate/1.3.3/classmate-1.3.3.jar" sourcepath="M2_REPO/com/fasterxml/classmate/1.3.3/classmate-1.3.3-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/springframework/spring-web/4.3.7.RELEASE/spring-web-4.3.7.RELEASE.jar" sourcepath="M2_REPO/org/springframework/spring-web/4.3.7.RELEASE/spring-web-4.3.7.RELEASE-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/springframework/spring-webmvc/4.3.7.RELEASE/spring-webmvc-4.3.7.RELEASE.jar" sourcepath="M2_REPO/org/springframework/spring-webmvc/4.3.7.RELEASE/spring-webmvc-4.3.7.RELEASE-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/cloud/spring-cloud-sleuth-core/1.2.0.RELEASE/spring-cloud-sleuth-core-1.2.0.RELEASE.jar" sourcepath="M2_REPO/org/springframework/cloud/spring-cloud-sleuth-core/1.2.0.RELEASE/spring-cloud-sleuth-core-1.2.0.RELEASE-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/cloud/spring-cloud-commons/1.2.0.RELEASE/spring-cloud-commons-1.2.0.RELEASE.jar" sourcepath="M2_REPO/org/springframework/cloud/spring-cloud-commons/1.2.0.RELEASE/spring-cloud-commons-1.2.0.RELEASE-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/springframework/security/spring-security-crypto/4.2.2.RELEASE/spring-security-crypto-4.2.2.RELEASE.jar" sourcepath="M2_REPO/org/springframework/security/spring-security-crypto/4.2.2.RELEASE/spring-security-crypto-4.2.2.RELEASE-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/aspectj/aspectjrt/1.8.9/aspectjrt-1.8.9.jar" sourcepath="M2_REPO/org/aspectj/aspectjrt/1.8.9/aspectjrt-1.8.9-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/springframework/cloud/spring-cloud-sleuth-core/1.2.1.RELEASE/spring-cloud-sleuth-core-1.2.1.RELEASE.jar" sourcepath="M2_REPO/org/springframework/cloud/spring-cloud-sleuth-core/1.2.1.RELEASE/spring-cloud-sleuth-core-1.2.1.RELEASE-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/io/prometheus/simpleclient/0.0.21/simpleclient-0.0.21.jar" sourcepath="M2_REPO/io/prometheus/simpleclient/0.0.21/simpleclient-0.0.21-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/github/soundcloud/prometheus-hystrix/3.1.0/prometheus-hystrix-3.1.0.jar" sourcepath="M2_REPO/com/github/soundcloud/prometheus-hystrix/3.1.0/prometheus-hystrix-3.1.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/netflix/hystrix/hystrix-core/1.4.23/hystrix-core-1.4.23.jar" sourcepath="M2_REPO/com/netflix/hystrix/hystrix-core/1.4.23/hystrix-core-1.4.23-sources.jar"/>
@@ -49,5 +46,4 @@
   <classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar" sourcepath="M2_REPO/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/io/reactivex/rxjava/1.1.0/rxjava-1.1.0.jar" sourcepath="M2_REPO/io/reactivex/rxjava/1.1.0/rxjava-1.1.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/net/sf/oval/oval/1.87/oval-1.87.jar" sourcepath="M2_REPO/net/sf/oval/oval/1.87/oval-1.87-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1.jar" sourcepath="M2_REPO/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1-sources.jar"/>
 </classpath>

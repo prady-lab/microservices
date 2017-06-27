@@ -7,7 +7,6 @@ package com.prady.sample.cloud.auth.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.ClientAlreadyExistsException;
 import org.springframework.security.oauth2.provider.ClientDetails;
@@ -19,6 +18,7 @@ import org.springframework.security.oauth2.provider.client.BaseClientDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import com.prady.sample.cloud.auth.mapper.ClientDetailsMapper;
 import com.prady.sample.cloud.auth.model.ClientDetail;
 
 /**
@@ -30,6 +30,9 @@ public class SecurityClientDetailsService implements ClientDetailsService, Clien
     @Autowired
     private ClientDetailService clientDetailsService;
 
+    @Autowired
+    private ClientDetailsMapper clientDetailsMapper;
+
     /*
      * (non-Javadoc)
      * @see org.springframework.security.oauth2.provider.ClientRegistrationService#addClientDetails(org.springframework.security.oauth2
@@ -37,11 +40,10 @@ public class SecurityClientDetailsService implements ClientDetailsService, Clien
      */
     @Override
     public void addClientDetails(ClientDetails clientDetails) throws ClientAlreadyExistsException {
-        ModelMapper modelMapper = new ModelMapper();
 
-        ClientDetail clientDetail = modelMapper.map(clientDetails, ClientDetail.class);
+        ClientDetail clientDetail = clientDetailsMapper.toClientDetail(clientDetails);
 
-        this.clientDetailsService.create(clientDetail);
+        clientDetailsService.create(clientDetail);
     }
 
     /*
@@ -91,7 +93,7 @@ public class SecurityClientDetailsService implements ClientDetailsService, Clien
      */
     @Override
     public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
-        ClientDetail client = this.clientDetailsService.getClient(clientId);
+        ClientDetail client = clientDetailsService.getClient(clientId);
         if (null == client) {
             throw new NoSuchClientException("No client with requested id: " + clientId);
         }

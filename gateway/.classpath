@@ -146,7 +146,6 @@
   <classpathentry kind="src" path="/common"/>
   <classpathentry kind="var" path="M2_REPO/com/github/soundcloud/prometheus-hystrix/3.1.0/prometheus-hystrix-3.1.0.jar" sourcepath="M2_REPO/com/github/soundcloud/prometheus-hystrix/3.1.0/prometheus-hystrix-3.1.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/net/sf/oval/oval/1.87/oval-1.87.jar" sourcepath="M2_REPO/net/sf/oval/oval/1.87/oval-1.87-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1.jar" sourcepath="M2_REPO/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1-sources.jar"/>
   <classpathentry kind="src" path="/env"/>
   <classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-starter-test/1.5.2.RELEASE/spring-boot-starter-test-1.5.2.RELEASE.jar" sourcepath="M2_REPO/org/springframework/boot/spring-boot-starter-test/1.5.2.RELEASE/spring-boot-starter-test-1.5.2.RELEASE-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-test/1.5.2.RELEASE/spring-boot-test-1.5.2.RELEASE.jar" sourcepath="M2_REPO/org/springframework/boot/spring-boot-test/1.5.2.RELEASE/spring-boot-test-1.5.2.RELEASE-sources.jar"/>

@@ -7,7 +7,7 @@
   <classpathentry kind="var" path="M2_REPO/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final.jar" sourcepath="M2_REPO/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/javax/inject/javax.inject/1/javax.inject-1.jar" sourcepath="M2_REPO/javax/inject/javax.inject/1/javax.inject-1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/javax/ws/rs/jsr311-api/1.1.1/jsr311-api-1.1.1.jar" sourcepath="M2_REPO/javax/ws/rs/jsr311-api/1.1.1/jsr311-api-1.1.1-sources.jar"/>
-  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
   <classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-starter-security/1.5.2.RELEASE/spring-boot-starter-security-1.5.2.RELEASE.jar" sourcepath="M2_REPO/org/springframework/boot/spring-boot-starter-security/1.5.2.RELEASE/spring-boot-starter-security-1.5.2.RELEASE-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-starter/1.5.2.RELEASE/spring-boot-starter-1.5.2.RELEASE.jar" sourcepath="M2_REPO/org/springframework/boot/spring-boot-starter/1.5.2.RELEASE/spring-boot-starter-1.5.2.RELEASE-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot/1.5.2.RELEASE/spring-boot-1.5.2.RELEASE.jar" sourcepath="M2_REPO/org/springframework/boot/spring-boot/1.5.2.RELEASE/spring-boot-1.5.2.RELEASE-sources.jar"/>
@@ -145,12 +145,11 @@
   <classpathentry kind="var" path="M2_REPO/org/springframework/spring-aspects/4.3.7.RELEASE/spring-aspects-4.3.7.RELEASE.jar" sourcepath="M2_REPO/org/springframework/spring-aspects/4.3.7.RELEASE/spring-aspects-4.3.7.RELEASE-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/aspectj/aspectjweaver/1.8.9/aspectjweaver-1.8.9.jar" sourcepath="M2_REPO/org/aspectj/aspectjweaver/1.8.9/aspectjweaver-1.8.9-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/net/logstash/logback/logstash-logback-encoder/4.10/logstash-logback-encoder-4.10.jar" sourcepath="M2_REPO/net/logstash/logback/logstash-logback-encoder/4.10/logstash-logback-encoder-4.10-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/modelmapper/modelmapper/1.0.0/modelmapper-1.0.0.jar" sourcepath="M2_REPO/org/modelmapper/modelmapper/1.0.0/modelmapper-1.0.0-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/mapstruct/mapstruct-jdk8/1.1.0.Final/mapstruct-jdk8-1.1.0.Final.jar" sourcepath="M2_REPO/org/mapstruct/mapstruct-jdk8/1.1.0.Final/mapstruct-jdk8-1.1.0.Final-sources.jar"/>
   <classpathentry kind="src" path="/model"/>
   <classpathentry kind="src" path="/common"/>
   <classpathentry kind="var" path="M2_REPO/com/github/soundcloud/prometheus-hystrix/3.1.0/prometheus-hystrix-3.1.0.jar" sourcepath="M2_REPO/com/github/soundcloud/prometheus-hystrix/3.1.0/prometheus-hystrix-3.1.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/net/sf/oval/oval/1.87/oval-1.87.jar" sourcepath="M2_REPO/net/sf/oval/oval/1.87/oval-1.87-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1.jar" sourcepath="M2_REPO/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1-sources.jar"/>
   <classpathentry kind="src" path="/env"/>
   <classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-starter-test/1.5.2.RELEASE/spring-boot-starter-test-1.5.2.RELEASE.jar" sourcepath="M2_REPO/org/springframework/boot/spring-boot-starter-test/1.5.2.RELEASE/spring-boot-starter-test-1.5.2.RELEASE-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-test/1.5.2.RELEASE/spring-boot-test-1.5.2.RELEASE.jar" sourcepath="M2_REPO/org/springframework/boot/spring-boot-test/1.5.2.RELEASE/spring-boot-test-1.5.2.RELEASE-sources.jar"/>
