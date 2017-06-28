@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/pradyb/microservices.svg?style=svg)](https://circleci.com/gh/pradyb/microservices)
 
-This is a POC application, which demonstrates Microservice Architecture Pattern using Spring Cloud, Netflix OSS, Consul, ELK, Docker and monitoring  solution.
+This is a PoC application, which demonstrates Microservice Architecture Pattern using Spring Cloud, Netflix OSS, Consul, ELK, Docker and monitoring  solution.
 
 ## Frameworks used 
 * [Spring Cloud](http://projects.spring.io/spring-cloud/)
