@@ -3,6 +3,10 @@ version: '2'
 networks:
   cloud-net:
     driver: bridge
+    
+volumes:
+    elasticsearch_data: {}
+    
 
 services:
 
@@ -85,7 +89,7 @@ services:
     ports:
       - 9200:9200
     volumes:
-      - ./logger/elasticsearch/data:/usr/share/elasticsearch/data
+      - elasticsearch_data:/usr/share/elasticsearch/data
     networks:
       - cloud-net
     labels:
