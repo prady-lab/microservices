@@ -54,7 +54,7 @@
    		<dependency>
 			<groupId>net.logstash.logback</groupId>
             <artifactId>logstash-logback-encoder</artifactId>
-            <version>4.10</version>
+            <version>4.11</version>
         </dependency>		
 		<dependency>
 			<groupId>com.prady.sample</groupId>
@@ -74,7 +74,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-parent</artifactId>
-				<version>Dalston.RELEASE</version>
+				<version>Dalston.SR1</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>

@@ -81,7 +81,7 @@
 		<dependency>
 			<groupId>net.logstash.logback</groupId>
 			<artifactId>logstash-logback-encoder</artifactId>
-			<version>4.10</version>
+			<version>4.11</version>
 		</dependency>
 
 
@@ -146,8 +146,8 @@
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Dalston.RELEASE</version>
+				<artifactId>spring-cloud-starter-parent</artifactId>
+				<version>Dalston.SR1</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
