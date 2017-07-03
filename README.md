@@ -27,12 +27,12 @@ This is a PoC application, which demonstrates Microservice Architecture Pattern 
 
 
 ### Before you start
-- Install Maven, Docker and Docker Compose.
+- Install Docker and Docker Compose.
 
 ### Get, Build and Run
 * `git clone https://github.com/pradyb/microservices`
 * `cd microservices`
-* `mvn clean package -DskipTests`
+* `mvnw clean package -DskipTests`
 * `docker-compose up --build -d`
 * `cd devops-monitoring`
 * `docker-compose up --build -d`
