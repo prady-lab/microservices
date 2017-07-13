@@ -1,7 +1,7 @@
 # Prady's sample application:- Microservice Architecture Pattern
 
 [![CircleCI](https://circleci.com/gh/pradyb/microservices.svg?style=svg)](https://circleci.com/gh/pradyb/microservices)
-[![Code Climate](https://img.shields.io/codeclimate/github/pradyb/microservices.svg)][codeclimate]
+[![Code Climate](https://img.shields.io/codeclimate/github/pradyb/microservices.svg)](https://codeclimate.com/github/pradyb/microservices)
 
 This is a PoC application, which demonstrates Microservice Architecture Pattern using Spring Cloud, Netflix OSS, Consul, ELK, Docker and monitoring  solution.
 
