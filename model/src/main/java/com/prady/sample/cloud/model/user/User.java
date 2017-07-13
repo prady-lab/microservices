@@ -27,7 +27,7 @@ public class User implements UserDetails {
      * @return the userId
      */
     public Long getUserId() {
-        return this.userId;
+        return userId;
     }
 
     /**
@@ -41,7 +41,7 @@ public class User implements UserDetails {
      * @return the firstName
      */
     public String getFirstName() {
-        return this.firstName;
+        return firstName;
     }
 
     /**
@@ -55,7 +55,7 @@ public class User implements UserDetails {
      * @return the lastName
      */
     public String getLastName() {
-        return this.lastName;
+        return lastName;
     }
 
     /**
@@ -71,7 +71,6 @@ public class User implements UserDetails {
      */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -81,7 +80,6 @@ public class User implements UserDetails {
      */
     @Override
     public String getPassword() {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -91,7 +89,6 @@ public class User implements UserDetails {
      */
     @Override
     public String getUsername() {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -101,7 +98,6 @@ public class User implements UserDetails {
      */
     @Override
     public boolean isAccountNonExpired() {
-        // TODO Auto-generated method stub
         return false;
     }
 
@@ -111,7 +107,6 @@ public class User implements UserDetails {
      */
     @Override
     public boolean isAccountNonLocked() {
-        // TODO Auto-generated method stub
         return false;
     }
 
@@ -121,7 +116,6 @@ public class User implements UserDetails {
      */
     @Override
     public boolean isCredentialsNonExpired() {
-        // TODO Auto-generated method stub
         return false;
     }
 
@@ -131,7 +125,6 @@ public class User implements UserDetails {
      */
     @Override
     public boolean isEnabled() {
-        // TODO Auto-generated method stub
         return false;
     }
 
