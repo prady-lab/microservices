@@ -18,7 +18,7 @@ import com.prady.sample.cloud.audit.service.AuditService;
 import com.prady.sample.cloud.common.dto.audit.AuditDTO;
 
 /**
- * @author Prady
+ * @author Prady.
  */
 @RestController
 public class AuditController {

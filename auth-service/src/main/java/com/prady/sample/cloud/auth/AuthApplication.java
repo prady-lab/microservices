@@ -57,17 +57,17 @@ public class AuthApplication {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             // @formatter:off
-            http.authorizeRequests().
-                    antMatchers("/prometheus**").permitAll().
-                    antMatchers("/health/**").permitAll().
-                    anyRequest().authenticated().and().csrf().disable();
+            http.authorizeRequests()
+                    .antMatchers("/prometheus**").permitAll()
+                    .antMatchers("/health/**").permitAll()
+                    .anyRequest().authenticated().and().csrf().disable();
 
             // @formatter:on
         }
 
         @Override
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.userDetailsService(this.userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+            auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
         }
 
         @Override
@@ -106,14 +106,14 @@ public class AuthApplication {
 			 * .scopes("server");
 			 */
 
-			clients.withClientDetails(this.securityClientDetailsService);
+			clients.withClientDetails(securityClientDetailsService);
 			// @formatter:on
         }
 
         @Override
         public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-            endpoints.tokenStore(tokenStore()).tokenEnhancer(jwtTokenEnhancer()).authenticationManager(this.authenticationManager)
-                    .userDetailsService(this.userDetailsService);
+            endpoints.tokenStore(tokenStore()).tokenEnhancer(jwtTokenEnhancer()).authenticationManager(authenticationManager)
+                    .userDetailsService(userDetailsService);
         }
 
         @Override
